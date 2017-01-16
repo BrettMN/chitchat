@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit {
     this.newMessage = '';
 
     this.getUserName(window.location.search.slice(1));
-    this.messages = [new MessageComponent('tetst', 'test test ')];
+    this.messages = [];
 
 
   }
@@ -38,7 +38,6 @@ export class ChatComponent implements OnInit {
       }
     });
 
-    console.log(this.userName);
     if (this.userName.length == 0) {
 
       window.location.href = '/';

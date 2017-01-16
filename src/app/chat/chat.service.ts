@@ -16,7 +16,7 @@ export class ChatService {
     let body = { message: message.text };
     console.log(body);
 
-    return this._http.post(URL, JSON.stringify(body))
+    return this._http.post(URL, body)
       .map((response: Response) => response.json())
       .toPromise()
       .then(res => res.json().data)
