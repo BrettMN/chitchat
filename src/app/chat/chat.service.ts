@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { MessageComponent } from './message/message.component';
 
-import { Observable } from 'rxjs';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 const URL = `http://messages.getsandbox.com/messages`;
 
@@ -14,13 +15,12 @@ export class ChatService {
   sendMessage(message: MessageComponent) {
 
     let body = { message: message.text };
-    console.log(body);
+    
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
 
-    return this._http.post(URL, body)
+    return this._http.post(URL, body, options)
       .map((response: Response) => response.json())
-      .toPromise()
-      .then(res => res.json().data)
-      .catch(err => console.log(err));
-
+      .toPromise();
   }
 }

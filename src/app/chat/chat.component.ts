@@ -24,8 +24,6 @@ export class ChatComponent implements OnInit {
 
     this.getUserName(window.location.search.slice(1));
     this.messages = [];
-
-
   }
 
   getUserName(queryString: string) {
@@ -42,7 +40,6 @@ export class ChatComponent implements OnInit {
 
       window.location.href = '/';
     }
-
   }
 
   sendMessage() {
@@ -51,12 +48,12 @@ export class ChatComponent implements OnInit {
     this.messages.push(newMessage);
     this.newMessage = '';
 
-    this._chatService.sendMessage(newMessage).then(result => {
-      let newResponse = new MessageComponent(CHATBOTNAME, result);
+    this._chatService.sendMessage(newMessage)
+      .then(result => {
 
-      this.messages.push(newResponse);
+        let newResponse = new MessageComponent(CHATBOTNAME, result.message);
 
-    });
+        this.messages.push(newResponse);
+      });
   }
-
 }
