@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Message } from './message/message';
 import { MessageComponent } from './message/message.component';
 import { ChatService } from './chat.service';
 
@@ -13,7 +14,7 @@ const CHATBOTNAME = 'Echo Bot';
 export class ChatComponent implements OnInit {
 
   userName: string;
-  messages: MessageComponent[];
+  messages: Message[];
   newMessage: string;
 
   constructor(private _chatService: ChatService) { }
@@ -43,17 +44,24 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    console.log(this);
-    let newMessage = new MessageComponent(this.userName, this.newMessage);
-    this.messages.push(newMessage);
+    
+    let messageToSend = new Message()
+    messageToSend.userName = this.userName;
+    messageToSend.text = this.newMessage;
+
+    this.messages.push(messageToSend);
     this.newMessage = '';
 
-    this._chatService.sendMessage(newMessage)
+    this._chatService.sendMessage(messageToSend)
       .then(result => {
 
-        let newResponse = new MessageComponent(CHATBOTNAME, result.message);
+        let newResponse = new Message();
+        newResponse.userName = CHATBOTNAME;
+        newResponse.text = result.message;
 
         this.messages.push(newResponse);
+
+        console.log(this);
       });
   }
 }

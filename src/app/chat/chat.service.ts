@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { MessageComponent } from './message/message.component';
+import { Message } from './message/message';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -12,10 +12,10 @@ export class ChatService {
 
   constructor(private _http: Http) { }
 
-  sendMessage(message: MessageComponent) {
+  sendMessage(message: Message) {
 
     let body = { message: message.text };
-    
+
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
