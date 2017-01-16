@@ -1,0 +1,18 @@
+<div id="login-modal" class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label class="row justify-content-center" for="userName">Hello! What is Your name?</label>
+            <input [(ngModel)]="userName" name="userName" id="userName" type="text" class="form-control" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button (click)="login($event)" class="btn btn-primary" *ngIf="userName != ''">go!</button>
+        <button href="#" class="btn btn-primary" disabled *ngIf="userName == ''">go!</button>
+      </div>
+    </div>
+  </div>
+</div>

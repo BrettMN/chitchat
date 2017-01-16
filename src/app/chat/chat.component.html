@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="text-center">Chitchat with {{ userName }}</h1>
+  <div class="row">
+    <div id="chat-window" class="container col-sm-12">
+      <p *ngFor="let message of messages">
+        <strong>{{message.user}}: </strong>
+        <span>{{message.text}}</span>
+      </p>
+    </div>
+  </div>
+  <form>
+    <div class="row">
+      <textarea name="newMessage" [(ngModel)]="newMessage" class="col-sm-10" cols="30" rows="3"></textarea>
+
+      <input name="sendMessage" (click)="sendMessage()" type="button" class="btn btn-primary col-sm-2" value="Send">
+    </div>
+  </form>
+
+</div>

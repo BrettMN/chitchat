@@ -1,0 +1,9 @@
+
+#login-modal{
+  display: block;
+  background-color: gray;
+}
+
+#user-name{
+  width:75%;
+}
